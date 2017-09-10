@@ -26,11 +26,16 @@ class Post(models.Model):
     created_time = models.DateTimeField()
     modified_time = models.DateTimeField()
     excerpt = models.CharField(max_length=200, blank=True)
+    views = models.PositiveIntegerField(default=0)
 
     category = models.ForeignKey(Category)
     tags = models.ManyToManyField(Tag, blank=True)
 
     author = models.ForeignKey(User)
+
+    def increase_views(self):
+        self.views += 1
+        self.save(update_field=['views'])
 
     def get_absolute_url(self):
         return reverse('blog:detail', kwargs={'pk': self.pk})
