@@ -28,10 +28,10 @@ class Post(models.Model):
     excerpt = models.CharField(max_length=200, blank=True)
     views = models.PositiveIntegerField(default=0)
 
-    category = models.ForeignKey(Category)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT)
     tags = models.ManyToManyField(Tag, blank=True)
 
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(User, on_delete=models.PROTECT)
 
     def increase_views(self):
         self.views += 1

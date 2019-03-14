@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404
+import markdown
+
 from .models import Post, Category
 from comments.forms import CommentForm
-
-import markdown
 
 
 def index(request):
